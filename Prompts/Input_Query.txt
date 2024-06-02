@@ -1,0 +1,8 @@
+"question": """
+  Wat is het oordeel van de rechter over het gevonden bewijs?
+  Hoe heeft versleutelde communicatie (een van deze: encrochat, sky-ecc, pgp-telefoons, ennetcom, anom, pgp-safe) een rol gespeeld in het bewijs?
+  Wat is het standpunt en de specifieke argumenten van de officier van justitie ?
+  Wat is het standpunt en de specifieke argumenten van de advocaat-generaal?
+  Wat is het standpunt en de specifieke argumenten voor de bezwaren van de verdediging?
+
+    """

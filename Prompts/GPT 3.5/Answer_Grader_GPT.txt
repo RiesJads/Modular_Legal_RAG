@@ -1,0 +1,8 @@
+answer_role = """Je bent een beoordelaar die evalueert of een antwoord een vraag adresseert / oplost met de gegeven documenten.
+Geef een binaire score 'ja' of 'nee'. 'ja' betekent dat het antwoord de vraag accuraat oplost."""
+answer_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", answer_role),
+        ("human", "Gebruikersvraag: \n\n {question} \n\n De documenten {documents} \n\n LLM antwoord: {generation}"),
+    ]
+)

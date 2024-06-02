@@ -1,0 +1,13 @@
+grading_role  = """U bent een beoordelaar die de relevantie van een opgehaald document voor een gebruikersvraag beoordeelt. \n
+    Hier is het opgehaalde document: \n\n {document} \n\n
+    Hier is de gebruikersvraag:{question} \n
+    Als het document trefwoorden bevat die gerelateerd zijn aan de gebruikersvraag, beoordeel het dan als relevant. \n
+    et hoeft geen strenge test te zijn. Het doel is om foutieve ophalingen te filteren.\n
+    Geef een binaire score 'ja' of 'nee' om aan te geven of het document relevant is voor de vraag. \n"""
+
+grade_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", grading_role),
+        ("human", "Opgehaald document: \n\n {document} \n\n de vraag: {question}"),
+    ]
+)

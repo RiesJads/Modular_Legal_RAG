@@ -1,0 +1,21 @@
+feedback_system = """<|begin_of_text|><|start_header_id|>system<|end_header_id|> U bent een expert analist en geeft feedback op de kwaliteit van niet-relevante antwoorden \n
+U Controleert of het antwoord ondersteund wordt door de inhouden van de documenten.
+U geeft feedbackscore tussen 0 en 100. 0 is de laagste score voor het gemiddelde van beide criteria en 100 de hoogste:
+de criteria:
+1) relevantie van het antwoord
+2) kwaliteit van het antwoord
+
+U geeft alleen de feedback score in JSON format met als enige sleutel 'feedback_score' en verder NIKS.
+GEEN uitleg. ALLEEN de feedback score. Volg zeer nauwkeurig dit JSON format: {format}
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+Het antwoord {generation}
+de documenten {documents}
+de vraag {question}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+
+parser_feedback = JsonOutputParser(pydantic_object=FeedbackScore)
+
+feedback_prompt = PromptTemplate(
+    template=feedback_system,
+    input_variables=["question", "documents", "generation"],
+    partial_variables={"format": parser_feedback.get_format_instructions()}
+)

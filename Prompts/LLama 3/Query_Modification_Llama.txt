@@ -1,0 +1,11 @@
+rewrite = """<|begin_of_text|><|start_header_id|>system<|end_header_id|> U bent een vragen-herschrijver die een invoervraag omzet naar een betere versie, een geoptimaliseerde versie\n
+    voor ophaling via de vectorstore. Bekijk de oorspronkelijke vraag en formuleer een verbeterde vraag op basis van het voorlopig antwoord. Herschrijf ook de sub-vragen!
+    Als er geen voorlopig antwoord is, focus dan op de belangrijke elementen uit de oorspronkelijke vraag en je expertise als vragen-herschrijver.
+    Houdt de vraag in het NEDERLANDS. U antwoordt bevat enkel en alleen de nieuwe vraag.<|eot_id|><|start_header_id|>user<|end_header_id|>
+    De oorspronkelijke vraag: {question}
+    Het voorlopige antwoord: {generation} <|eot_id|><|start_header_id|>assistant<|end_header_id|>
+    """
+re_write_prompt = PromptTemplate(
+    template=rewrite,
+    input_variables=["question", "generation"]
+)

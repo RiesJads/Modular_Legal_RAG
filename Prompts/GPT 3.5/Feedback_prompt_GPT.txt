@@ -1,0 +1,21 @@
+feedback_system = """U bent een expert analist en geeft feedback op de kwaliteit van niet-relevante antwoorden \n
+U geeft de feedback op basis van het gegegven antwoord {generation}, de gegeven documenten {documents}, de gegeven vraag {question} \n
+U geeft feedback op basis van de volgende criteria:\n
+
+de criteria:
+1) relevantie van het antwoord
+2) kwaliteit van het antwoord
+
+
+"""
+
+feedback_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", feedback_system),
+        ("human", """Hier is de vraag: \n\n {question} \n
+        de documenten {documents}\n
+        en het gegeven antwoord: {generation} \n
+        Doorloop de criteria stap voor stap om een goed onderbouwde score te kunnen geven!
+        geef de feedback score om de kwaliteit van het antwoord te verbeteren gerelateerd aan de oorspronkelijke vraag."""),
+    ]
+)

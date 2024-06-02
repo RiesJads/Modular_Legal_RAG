@@ -1,0 +1,14 @@
+answer_role = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+U bent een beoordelaar die evalueert of een antwoord een vraag adresseert en oplost.
+'ja' betekent dat het antwoord de vraag accuraat en relevant beantwoordt. 'nee' betekent dat het antwoord de vraag niet accuraat en relevant beantwoordt.
+Geef een binaire score 'ja' of 'nee' in JSON format met als enige sleutel 'score' en verder NIKS. Enige output is JSON format! {format}<|eot_id|><|start_header_id|>user<|end_header_id|>
+De vraag: {question} \n
+LLM Antwoord: {generation} <|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+
+parser = JsonOutputParser(pydantic_object=GradeAnswer)
+
+answer_prompt = PromptTemplate(
+    template=answer_role,
+    input_variables=["question", "generation"],
+    partial_variables={"format": parser.get_format_instructions()}
+)

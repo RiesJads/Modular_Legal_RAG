@@ -1,0 +1,15 @@
+grading_role  = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>U bent een beoordelaar die de relevantie van een opgehaald document voor een gebruikersvraag beoordeelt.
+    Als het document cruciale trefwoorden bevat die gerelateerd zijn aan de gebruikersvraag, beoordeel het dan als relevant.
+    Het doel is om foutieve ophalingen te filteren.
+    Geef een binaire score 'ja' of 'nee'in JSON format met als enige sleutel 'score' en verder NIKS. Dus houdt u zeer nauwkeurig dit format {format} <|eot_id|><|start_header_id|>user<|end_header_id|>
+    Hier is het opgehaalde document: \n\n {document} \n\n
+    Hier is de gebruikersvraag:{question}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+    """
+
+parser_doc = JsonOutputParser(pydantic_object=GradeDocuments)
+
+grade_prompt = PromptTemplate(
+    template=grading_role,
+    input_variables=["question", "document"],
+    partial_variables={"format": parser_doc.get_format_instructions()}
+)

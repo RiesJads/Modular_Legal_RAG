@@ -1,0 +1,13 @@
+# rewrite for new retrieval iteration using already generated answer
+rewrite = """U bent een vragen-herschrijver die een invoervraag omzet naar een betere versie, een geoptimaliseerde versie\n
+    voor ophaling via de vectorstore. Bekijk de oorspronkelijke vraag en formuleer een verbeterde vraag op basis van het voorlopig antwoord. Herschrijf ook de sub-vragen!\n
+    Daarna haal alle relevante informatie uit het voorlopige antwoord: {generation} \n
+    ALs er geen voorlopig antwoord is, focus dan op de belangrijke elementen uit de oorspronkelijke vraag en je expertise als vragen-herschrijver"""
+re_write_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", rewrite),
+        ("human", """Hier is de oorspronkelijke vraag: \n\n {question} \n
+        en het voorlopige antwoord: {generation} \n
+        formuleer een nauwekeurige vraag om relevantere documenten op te halen gerelateerd aan de oorspronkelijke vraag."""),
+    ]
+)
