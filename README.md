@@ -2,8 +2,15 @@
 This repository contains the code and data associated with the EDA, the Modular RAG system's construction and inference, and the evaluation pipeline. 
 
 The system was used for large-scale and automated analysis via LLMs of PDF court statements from Rechtspraak.nl related to Criminal Court cases for PGP-systems (Encrochat, Sky ECC, ANOM, PGP-Safe, EnnetCom).
-The system includes multiple iterations of retrieval and includes Re-Ranking, Re-ordering, LLM-judges and a Feedback loop.
-LLMs used: GPT3.5-Turbo & LLama 3 8B-Instruct.
+The system includes multiple iterations of retrieval and includes 
+* Re-Ranking
+* Re-ordering
+* LLM-judges
+* Groundness and Hallucination Checks
+* Feedback loop.
+LLMs used:
+* GPT3.5-Turbo
+* LLama 3 8B-Instruct 
 
 The full architecture:
 
